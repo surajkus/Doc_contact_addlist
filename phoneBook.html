@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0px;
+
+    }
+
+    body {
+        display: flex;
+        justify-content: center;
+    }
+
+    .container {
+        width: 40%;
+        background-color: rgb(153, 158, 163);
+        height: auto;
+        border: 2px solid black;
+        padding: 20px;
+        text-align: center;
+        position: relative;
+        top: 40px;
+    }
+
+    input {
+        width: 20vw;
+        height: 4vh;
+        border-radius: 4px;
+        padding-left: 6px;
+        font-size: 18px;
+
+    }
+
+    .ts {
+        background-color: aqua;
+
+    }
+
+    #butt {
+        background-color: red;
+        color: #faf8f8;
+    }
+
+    table {
+        width: 100%;
+        background-color: #faf8f8;
+    }
+
+    td input {
+        width: 15vw;
+        border: none;
+    }
+
+    .edi {
+        background-color: rgb(117 221 13);
+        color: #faf8f8;
+
+    }
+
+    button {
+        background-color: deepskyblue;
+        border-radius: 4px;
+        color: white;
+    }
+</style>
+<script>
+
+    var header = "<thead class='ts'><th>Name</th><th>Contact</th><th>Operation</th><thead>";
+    var tbl_data = header;
+    function clicker() {
+        var n = document.getElementById("name_box").value;
+        var m = document.getElementById("tel_box").value;
+        tbl_data += "<tr><td><input type ='text' value ='" + n + "' readOnly></td><td><input type ='tel'  value ='" + m + "' readOnly ></td><td><button class='edi' onclick='edit(this)'>Edit</button>   <button id='butt' onclick='deletebox(this)'>Delete</button></td></tr>";
+        document.getElementById("tbl").innerHTML = tbl_data;
+        // document.getElementById("tel_box").innerHTML = tab_data;
+        document.getElementById("name_box").value = "";
+        document.getElementById("tel_box").value = "";
+
+    }
+
+    function edit(elem) {
+
+        elem.parentElement.parentElement.children[0].children[0].readOnly = false;
+        elem.parentElement.parentElement.children[1].children[0].readOnly = false;
+        elem.parentElement.innerHTML = "<button onclick ='save(this)'>save</button> <button id='butt' onclick='deletebox(this)'>Delete</button>";
+    }
+    function save(elem) {
+        elem.parentElement.parentElement.children[1].children[0].readOnly = true;
+        elem.parentElement.parentElement.children[0].children[0].readOnly = true;
+        elem.parentElement.innerHTML = "<button class='edi' onclick ='edit(this)'> Edit</button> <button id='butt' onclick='deletebox(this)'>Delete</button>";
+        elem.parentElement.parentElement.remove();
+
+    }
+    function deletebox(elem) {
+        elem.parentElement.parentElement.remove();
+        tbl_data = header;
+
+    }
+    function search() {
+        debugger;
+        //  document.getElementById("tbl").children[1].childNodes.length;
+        var length_data = document.getElementById("tbl").children[1].childNodes.length;
+        var key = document.getElementById("search_box").value;
+        document.getElementById("search_box").value = "";
+        var q = "";
+        var p = "";
+        for (var i = 0; i < length_data; i++) {
+            q = document.getElementById("tbl").children[1].children[i].children[0].children[0].value;
+
+            p = document.getElementById("tbl").children[1].children[i].children[1].children[0].value;
+            if (key == q || key == p) {
+                document.getElementById("tbl").children[1].children[i].children[0].children[0].style.backgroundColor = "lightgreen";
+                 document.getElementById("tbl").children[1].children[i].children[1].children[0].style.backgroundColor = "lightgreen";
+            }
+            
+
+              
+
+           
+        }
+
+
+    }
+
+
+
+
+
+
+
+</script>
+
+<body>
+    <div class="container">
+        <h1 style="color: rgb(255, 253, 250) ; font-size: 40px;">Phone Book</h1><br><br>
+
+        <input type="text" id="name_box" placeholder="Enter your name"><br><br>
+        <input type="tel" id="tel_box" placeholder="Enter your Contact"><br><br>
+        <button onclick="clicker()">Submit</button><br><br>
+        <input type="search" id="search_box" placeholder="Search">
+        <button onclick="search()">Search</button><br>
+        
+
+        <table border="5" id="tbl">
+
+        </table>
+    </div>
+</body>
+
+</html>
