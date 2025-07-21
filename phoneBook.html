@@ -21,7 +21,8 @@
         width: 40%;
         background-color: rgb(153, 158, 163);
         height: auto;
-        border: 2px solid black;
+           
+    box-shadow: 8px 9px 10px 0px #bac1c8;
         padding: 20px;
         text-align: center;
         position: relative;
@@ -38,7 +39,8 @@
     }
 
     .ts {
-        background-color: aqua;
+       background-color: rgb(77 72 165);
+       color: white;
 
     }
 
@@ -58,7 +60,7 @@
     }
 
     .edi {
-        background-color: rgb(117 221 13);
+        background-color: rgb(87, 155, 20);
         color: #faf8f8;
 
     }
@@ -73,15 +75,16 @@
 
     var header = "<thead class='ts'><th>Name</th><th>Contact</th><th>Operation</th><thead>";
     var tbl_data = header;
-    function clicker() {
+    function clicker() { 
         var n = document.getElementById("name_box").value;
         var m = document.getElementById("tel_box").value;
+        if(!(n=="" || m=="")){
         tbl_data += "<tr><td><input type ='text' value ='" + n + "' readOnly></td><td><input type ='tel'  value ='" + m + "' readOnly ></td><td><button class='edi' onclick='edit(this)'>Edit</button>   <button id='butt' onclick='deletebox(this)'>Delete</button></td></tr>";
         document.getElementById("tbl").innerHTML = tbl_data;
         // document.getElementById("tel_box").innerHTML = tab_data;
         document.getElementById("name_box").value = "";
         document.getElementById("tel_box").value = "";
-
+        }
     }
 
     function edit(elem) {
@@ -138,14 +141,13 @@
 
 <body>
     <div class="container">
-        <h1 style="color: rgb(255, 253, 250) ; font-size: 40px;">Phone Book</h1><br><br>
+        <h1 style="color: rgb(77 72 165); ; font-size: 40px;">Phone Book</h1><br><br>
 
         <input type="text" id="name_box" placeholder="Enter your name"><br><br>
         <input type="tel" id="tel_box" placeholder="Enter your Contact"><br><br>
         <button onclick="clicker()">Submit</button><br><br>
         <input type="search" id="search_box" placeholder="Search">
-        <button onclick="search()">Search</button><br>
-        
+        <button onclick="search()">Search</button><br><br><br>
 
         <table border="5" id="tbl">
 
